@@ -60,6 +60,7 @@ void setup() {
   }
   
   delay(1000);
+  digitalWrite(led, LOW);
   DebugPrintln("IP address: ");
   DebugPrintln(WiFi.localIP());//WiFi.localIP()返回8266获得的ip地址
   server.begin();
@@ -95,6 +96,17 @@ void loop() {
             }
         }
    }
+
+   if(Serial.available()>0){
+      char ch = Serial.read();
+      if(ch == '1'){
+        smartConfig();
+        delay(1000);
+        digitalWrite(led, LOW);
+        DebugPrintln("IP address: ");
+        DebugPrintln(WiFi.localIP());//WiFi.localIP()返回8266获得的ip地址
+      }
+   }
 }
 
 /**
@@ -105,6 +117,7 @@ bool autoConfig(){
   WiFi.begin();
   delay(2000);//刚启动模块的话 延时稳定一下
   DebugPrintln("AutoConfiging ......");
+  int led_status = 1;
   for(int i=0;i<20;i++){
     int wstatus = WiFi.status();
     if (wstatus == WL_CONNECTED){
@@ -117,6 +130,13 @@ bool autoConfig(){
     }else{
       DebugPrint(".");
       delay(1000);
+      if(led_status == 1){
+        digitalWrite(led, LOW);
+        led_status = 0;
+      }else{
+        digitalWrite(led, HIGH);
+        led_status = 1;
+      }
     } 
   }
   DebugPrintln("AutoConfig Faild!");
@@ -133,9 +153,19 @@ void smartConfig()
   DebugPrintln("Wait for Smartconfig");
   // 等待配网
   WiFi.beginSmartConfig();
+  int led_status = 1;
   while (1){
     DebugPrint(".");
     delay(500);
+    
+    if(led_status == 1){
+        digitalWrite(led, LOW);
+        led_status = 0;
+      }else{
+        digitalWrite(led, HIGH);
+        led_status = 1;
+    }
+    
     if (WiFi.smartConfigDone()){
       //smartconfig配置完毕
       DebugPrintln("SmartConfig Success");
