@@ -39,6 +39,7 @@ struct config_type{
 };
 
 config_type config;
+int flag = HIGH;//默认当前灭灯
   
 /**
 * @Desc 初始化操作
@@ -117,7 +118,6 @@ bool autoConfig(){
   WiFi.begin();
   delay(2000);//刚启动模块的话 延时稳定一下
   DebugPrintln("AutoConfiging ......");
-  int led_status = 1;
   for(int i=0;i<20;i++){
     int wstatus = WiFi.status();
     if (wstatus == WL_CONNECTED){
@@ -130,13 +130,8 @@ bool autoConfig(){
     }else{
       DebugPrint(".");
       delay(1000);
-      if(led_status == 1){
-        digitalWrite(led, LOW);
-        led_status = 0;
-      }else{
-        digitalWrite(led, HIGH);
-        led_status = 1;
-      }
+      flag = !flag;
+      digitalWrite(led, flag);
     } 
   }
   DebugPrintln("AutoConfig Faild!");
@@ -153,18 +148,11 @@ void smartConfig()
   DebugPrintln("Wait for Smartconfig");
   // 等待配网
   WiFi.beginSmartConfig();
-  int led_status = 1;
   while (1){
     DebugPrint(".");
     delay(500);
-    
-    if(led_status == 1){
-        digitalWrite(led, LOW);
-        led_status = 0;
-      }else{
-        digitalWrite(led, HIGH);
-        led_status = 1;
-    }
+    flag = !flag;
+    digitalWrite(led, flag);
     
     if (WiFi.smartConfigDone()){
       //smartconfig配置完毕
