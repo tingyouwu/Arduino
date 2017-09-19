@@ -110,6 +110,7 @@ void loop() {
     //呼吸灯效果
     breatheRGB(frequency);
   }
+  checkButton();
 }
 
 /**
@@ -309,6 +310,7 @@ void checkButton(){
        state_btn = buttonState;
        if(state_btn == HIGH){
         //再次确认是否真的按下了按键
+         DBGLN("smartconfig");
          WifiSerial.write('1');
        }
     }
