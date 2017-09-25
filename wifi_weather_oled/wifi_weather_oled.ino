@@ -5,9 +5,16 @@
 * 16X16点阵显示 取模方式 阴码+逐行式+顺向
 **/
 #include <ESP8266WiFi.h>
+#include <ArduinoJson.h>
+//#define DEBUG 是否启用debug功能
 
+#ifdef DEBUG
 #define DebugPrintln(message)    Serial.println(message)
 #define DebugPrint(message)    Serial.print(message)
+#else
+#define DebugPrintln(message)
+#define DebugPrint(message)
+#endif
 #define LED 2
 
 const unsigned long BAUD_RATE = 115200;                   // serial connection speed
@@ -25,7 +32,15 @@ char endOfHeaders[] = "\r\n\r\n";
 unsigned int flag = HIGH;//默认当前灭灯
 long lastTime = 0;
 // 请求服务间隔
-long Delay = 5000;
+long Delay = 20000;
+
+// 我们要从此网页中提取的数据的类型
+struct UserData {
+  char city[16];//城市名称
+  char weather[32];//天气介绍（多云...）
+  char temp[16];//温度
+  char udate[32];//更新时间
+};
 
 /**
 * @Desc 初始化操作
@@ -34,6 +49,16 @@ void setup()   {
   Serial.begin(BAUD_RATE);
   pinMode(LED,OUTPUT);
   digitalWrite(LED, HIGH);
+  if(!autoConfig()){
+    smartConfig();
+    while (WiFi.status() != WL_CONNECTED) {
+    //这个函数是wifi连接状态，返回wifi链接状态
+       delay(500);
+       DebugPrint(".");
+    }
+  }
+  DebugPrintln("IP address: ");
+  DebugPrintln(WiFi.localIP());//WiFi.localIP()返回8266获得的ip地址
   lastTime = millis();
 }
 
@@ -47,11 +72,15 @@ void loop() {
   }
 
   if(millis()-lastTime>=Delay){
-	 //每间隔5s左右调用一次
+	 //每间隔20s左右调用一次
      lastTime = millis();
      if (sendRequest(host, city, APIKEY) && skipResponseHeaders()) {
        clrEsp8266ResponseBuffer();
        readReponseContent(response, sizeof(response));
+       UserData userData;
+       if (parseUserData(response, &userData)) {
+          sendtoArduino(&userData);
+       }
      }
   }
 
@@ -81,8 +110,8 @@ bool sendRequest(const char* host, const char* cityid, const char* apiKey) {
   client.print(String("GET ") + GetUrl + " HTTP/1.1\r\n" +
                "Host: " + host + "\r\n" +
                "Connection: close\r\n\r\n");
-  Serial.println("create a request:");
-  Serial.println(String("GET ") + GetUrl + " HTTP/1.1\r\n" +
+  DebugPrintln("create a request:");
+  DebugPrintln(String("GET ") + GetUrl + " HTTP/1.1\r\n" +
                "Host: " + host + "\r\n" +
                "Connection: close\r\n");
   delay(1000);
@@ -96,7 +125,7 @@ bool skipResponseHeaders() {
   // HTTP headers end with an empty line
   bool ok = client.find(endOfHeaders);
   if (!ok) {
-    Serial.println("No response or invalid response!");
+    DebugPrintln("No response or invalid response!");
   }
   return ok;
 }
@@ -107,10 +136,10 @@ bool skipResponseHeaders() {
 void readReponseContent(char* content, size_t maxSize) {
   size_t length = client.peekBytes(content, maxSize);
   delay(100);
-  Serial.println("Get the data from Internet!");
+  DebugPrintln("Get the data from Internet!");
   content[length] = 0;
-  Serial.println(content);
-  Serial.println("Read data Over!");
+  DebugPrintln(content);
+  DebugPrintln("Read data Over!");
   client.flush();//这句代码需要加上  不然会发现每隔一次client.find会失败
 }
   
@@ -130,16 +159,25 @@ bool autoConfig(){
   WiFi.mode(WIFI_STA);     //设置esp8266 工作模式
   WiFi.begin();
   delay(2000);//刚启动模块的话 延时稳定一下
+  DebugPrintln("AutoConfiging ......");
   for(int i=0;i<20;i++){
     int wstatus = WiFi.status();
     if (wstatus == WL_CONNECTED){
+      DebugPrintln("AutoConfig Success");
+      DebugPrint("SSID:");
+      DebugPrintln(WiFi.SSID().c_str());
+      DebugPrint("PSW:");
+      DebugPrintln(WiFi.psk().c_str());
+      digitalWrite(LED, LOW);
       return true;
     }else{
+      DebugPrint(".");
       delay(1000);
       flag = !flag;
       digitalWrite(LED, flag);
     } 
   }
+  DebugPrintln("AutoConfig Faild!");
   return false;
 }
 
@@ -150,6 +188,7 @@ void smartConfig()
 {
   WiFi.mode(WIFI_STA);
   delay(2000);
+  DebugPrintln("Wait for Smartconfig");
   // 等待配网
   WiFi.beginSmartConfig();
   while (1){
@@ -158,9 +197,54 @@ void smartConfig()
     digitalWrite(LED, flag);
     if (WiFi.smartConfigDone()){
       //smartconfig配置完毕
+      DebugPrintln("SmartConfig Success");
+      DebugPrint("SSID:");
+      DebugPrintln(WiFi.SSID().c_str());
+      DebugPrint("PSW:");
+      DebugPrintln(WiFi.psk().c_str());
+      digitalWrite(LED, LOW);
       WiFi.setAutoConnect(true);  // 设置自动连接
       break;
     }
   }
 }
 
+bool parseUserData(char* content, struct UserData* userData) {
+//    -- 根据我们需要解析的数据来计算JSON缓冲区最佳大小
+//   如果你使用StaticJsonBuffer时才需要
+//    const size_t BUFFER_SIZE = 1024;
+//   在堆栈上分配一个临时内存池
+//    StaticJsonBuffer<BUFFER_SIZE> jsonBuffer;
+//    -- 如果堆栈的内存池太大，使用 DynamicJsonBuffer jsonBuffer 代替
+  DynamicJsonBuffer jsonBuffer;
+  
+  JsonObject& root = jsonBuffer.parseObject(content);
+  
+  if (!root.success()) {
+    Serial.println("JSON parsing failed!");
+    return false;
+  }
+   
+  //复制我们感兴趣的字符串
+  strcpy(userData->city, root["results"][0]["location"]["name"]);
+  strcpy(userData->weather, root["results"][0]["now"]["text"]);
+  strcpy(userData->temp, root["results"][0]["now"]["temperature"]);
+  strcpy(userData->udate, root["results"][0]["last_update"]);
+  //  -- 这不是强制复制，你可以使用指针，因为他们是指向“内容”缓冲区内，所以你需要确保
+  //   当你读取字符串时它仍在内存中
+  return true;
+}
+
+// 打印从JSON中提取的数据
+void sendtoArduino(const struct UserData* userData) {
+  StaticJsonBuffer<300> jsonBuffer;
+  // StaticJsonBuffer 在栈区分配内存   它也可以被 DynamicJsonBuffer（内存在堆区分配） 代替
+  // DynamicJsonBuffer  jsonBuffer;
+  //创建根，也就是顶节点
+  JsonObject& root = jsonBuffer.createObject();
+  root["city"] = userData->city;
+  root["weather"] = userData->weather;
+  root["temp"] = userData->temp;
+  root["time"] = userData->udate;
+  root.printTo(Serial);//单行打印
+}

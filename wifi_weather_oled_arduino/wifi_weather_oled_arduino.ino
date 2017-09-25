@@ -53,7 +53,7 @@
 Adafruit_SSD1306 display(OLED_RESET);
 
 const unsigned long BAUD_RATE = 115200;                   // serial connection speed
-const size_t MAX_CONTENT_SIZE = 1000;                   // max size of the HTTP response
+const size_t MAX_CONTENT_SIZE = 300;                   // max size of the HTTP response
 char response[MAX_CONTENT_SIZE];
 
 // 定义记录按键当前状态的变量
@@ -96,9 +96,6 @@ void setup()   {
   display.ShowCN_16(0,16, Welcome_16x16,sizeof(Welcome_16x16)/32,WHITE);
   display.ShowCN_16(48,32, Author_16x16,sizeof(Author_16x16)/32,WHITE);
   display.display();
-  delay(2000);
-  display.clearDisplay();   // clears the screen and buffer
-  display.display();  
 }
 
 void loop() {
@@ -108,7 +105,9 @@ void loop() {
     if(data_size>0){
       //开始解析数据
       UserData userData;
-      parseData(response,&userData);
+      if(parseData(response,&userData)){
+        showWeather(&userData);
+      }
     }
   }
   checkButton();
@@ -128,26 +127,7 @@ int ReceiveMessage(char* content, size_t maxSize){
 
 /**
  * 数据格式如下：
- * {
- *    "results": [
- *        {
- *            "location": {
- *                "id": "WX4FBXXFKE4F",
- *                "name": "北京",
- *                "country": "CN",
- *                "path": "北京,北京,中国",
- *                "timezone": "Asia/Shanghai",
- *                "timezone_offset": "+08:00"
- *            },
- *            "now": {
- *                "text": "多云",
- *                "code": "4",
- *                "temperature": "23"
- *            },
- *            "last_update": "2017-09-13T09:51:00+08:00"
- *        }
- *    ]
- *}
+ * {"city":"Guangzhou","weather":"Cloudy","temp":"28","time":"2017-09-25T22:40:00+08:00"}
  */
 bool parseData(char* content,struct UserData* userData) {
 //    -- 根据我们需要解析的数据来计算JSON缓冲区最佳大小
@@ -161,15 +141,15 @@ bool parseData(char* content,struct UserData* userData) {
   JsonObject& root = jsonBuffer.parseObject(content);
    
   if (!root.success()) {
-    Serial.println("JSON parsing failed!");
+    DBGLN("JSON parsing failed!");
     return false;
   }
  
   //复制我们感兴趣的字符串
-  strcpy(userData->city, root["results"][0]["location"]["name"]);
-  strcpy(userData->weather, root["results"][0]["now"]["text"]);
-  strcpy(userData->temp, root["results"][0]["now"]["temperature"]);
-  strcpy(userData->udate, root["results"][0]["last_update"]);
+  strcpy(userData->city, root["city"]);
+  strcpy(userData->weather, root["weather"]);
+  strcpy(userData->temp, root["temp"]);
+  strncpy(userData->udate, root["time"],10);
   //  -- 这不是强制复制，你可以使用指针，因为他们是指向“内容”缓冲区内，所以你需要确保
   //   当你读取字符串时它仍在内存中
   return true;
@@ -206,4 +186,30 @@ void checkButton(){
 
 void clrEsp8266ResponseBuffer(void){
     memset(response, 0, MAX_CONTENT_SIZE);      //清空
+}
+
+// 打印从JSON中提取的数据
+void showWeather(struct UserData* userData) {
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  
+  display.ShowCN_16(0,0, City_16x16,sizeof(City_16x16)/32,WHITE);
+  display.setCursor(sizeof(City_16x16)/2+8,4);
+  display.print(userData->city);
+  
+  display.ShowCN_16(0,16, Weather_16x16,sizeof(Weather_16x16)/32,WHITE);
+  display.setCursor(sizeof(Weather_16x16)/2+8,18);
+  display.print(userData->weather);
+  
+  display.ShowCN_16(0,32, Temp_16x16,sizeof(Temp_16x16)/32,WHITE);
+  display.setCursor(sizeof(Temp_16x16)/2+8,36);
+  display.print(userData->temp);
+  display.print(" C");
+  
+  display.ShowCN_16(0,48, Date_16x16,sizeof(Date_16x16)/32,WHITE);
+  display.setCursor(sizeof(Date_16x16)/2+8,52);
+  
+  display.print(userData->udate);
+  display.display();
 }
