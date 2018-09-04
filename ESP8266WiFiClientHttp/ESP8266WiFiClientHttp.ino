@@ -9,8 +9,8 @@
 
 //以下三个定义为调试定义
 #define DebugBegin(baud_rate)    Serial.begin(baud_rate)
-#define DebugPrintln(message)    DebugPrintln(message)
-#define DebugPrint(message)    DebugPrint(message)
+#define DebugPrintln(message)    Serial.println(message)
+#define DebugPrint(message)    Serial.print(message)
 
 const char* ssid     = "360wifilulu";         // XXXXXX -- 使用时请修改为当前你的 wifi ssid
 const char* password = "6206908you11011010";         // XXXXXX -- 使用时请修改为当前你的 wifi 密码
