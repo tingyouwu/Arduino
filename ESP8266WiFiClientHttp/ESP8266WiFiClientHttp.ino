@@ -12,7 +12,7 @@
 #define DebugPrintln(message)    Serial.println(message)
 #define DebugPrint(message)    Serial.print(message)
 
-const char* ssid     = "360wifilulu";         // XXXXXX -- 使用时请修改为当前你的 wifi ssid
+const char* ssid     = "TP-LINK_5344";         // XXXXXX -- 使用时请修改为当前你的 wifi ssid
 const char* password = "6206908you11011010";         // XXXXXX -- 使用时请修改为当前你的 wifi 密码
 const char* host = "api.seniverse.com";
 const char* APIKEY = "wcmquevztdy1jpca";        //API KEY
@@ -42,6 +42,7 @@ void setup() {
   DebugPrint("Connecting to ");//写几句提示，哈哈
   DebugPrintln(ssid);
   WiFi.begin(ssid, password);   //连接wifi
+  WiFi.setAutoConnect(true);
   while (WiFi.status() != WL_CONNECTED) {
     //这个函数是wifi连接状态，返回wifi链接状态
     delay(500);

@@ -15,8 +15,8 @@
 #define AP_SSID "TP-LINK_5344" //这里改成你的wifi名字
 #define AP_PSW  "6206908you11011010"//这里改成你的wifi密码
 
-const uint16_t port = 80;
-const char * host = "192.168.1.1"; // ip or dns
+const uint16_t port = 8234;
+const char * host = "192.168.1.102"; // ip or dns
 WiFiClient client;//创建一个tcp client连接
 
 void setup() {
@@ -43,7 +43,6 @@ void setup() {
   delay(500);
 }
 
-
 void loop() {
   
   DebugPrint("connecting to ");
@@ -57,7 +56,8 @@ void loop() {
   }
 
   // 发送数据到Tcp server
-  client.println("Send this data to server");
+  DebugPrintln("Send this data to server");
+  client.println(String("Send this data to server"));
 
   //读取从server返回到响应数据
   String line = client.readStringUntil('\r');
