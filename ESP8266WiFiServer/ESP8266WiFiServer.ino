@@ -1,12 +1,13 @@
 /**
  * Demo：
  *    演示WiFiServer功能
+ *    打开TCP调试助手 模拟TCP client请求
  * @author 单片机菜鸟
  * @date 2019/09/04
  */
 #include <ESP8266WiFi.h>
 
-//定义最多多少个client可以连接本server
+//定义最多多少个client可以连接本server(一般不要超过4个)
 #define MAX_SRV_CLIENTS 1
 //以下三个定义为调试定义
 #define DebugBegin(baud_rate)    Serial.begin(baud_rate)
