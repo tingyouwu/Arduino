@@ -14,7 +14,7 @@
 #define DebugPrintln(message)    Serial.println(message)
 #define DebugPrint(message)    Serial.print(message)
 
-const char* ssid = "**********";
+const char* ssid = "TP-LINK_5344";
 const char* password = "6206908you11011010";
 
 //创建server

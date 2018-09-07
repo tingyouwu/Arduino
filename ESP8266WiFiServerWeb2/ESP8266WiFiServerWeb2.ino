@@ -16,8 +16,8 @@
 #define DebugPrintln(message)    Serial.println(message)
 #define DebugPrint(message)    Serial.print(message)
 
-#define ssid "your-ssid"
-#define password "your-password"
+#define ssid "TP-LINK_5344"
+#define password "6206908you11011010"
 
 // 创建tcp server
 WiFiServer server(80);

@@ -7,8 +7,8 @@
  */
 #include <ESP8266WiFi.h>
 
-const char* ssid = "********";
-const char* password = "********";
+const char* ssid = "TP-LINK_5344";
+const char* password = "6206908you11011010";
 
 //创建 tcp server
 WiFiServer server(80);
