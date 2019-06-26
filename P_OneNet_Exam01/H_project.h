@@ -30,10 +30,10 @@ const char* password = "6206908you11011010";//wifi秘密
 PubSubClient mqttClient;
 const char* mqttServer = "183.230.40.39";//mqtt服务器
 const uint16_t mqttPort = 6002;
-#define PRODUCT_ID    "250781" //此为博哥自己的产品id 请新建自己的
-#define API_KEY    "JNjnDCwkIEVK=Mc=4TUZ4peS4fA="
-#define DEVICE_ID "531151796"
-#define TOPIC     "LED_CONTROL"
+#define PRODUCT_ID    "253190" //此为博哥自己的产品id 请新建自己的
+#define API_KEY    "aat9ivuJls3gcAFWnLoxfbwW8bI="
+#define DEVICE_ID "531724199"
+#define TOPIC     "esp8266led"
 
 unsigned long lastWiFiCheckTick = 0;
 bool ledState = 0;

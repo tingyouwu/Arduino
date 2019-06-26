@@ -64,7 +64,8 @@ void initSystem(){
             //重启系统
             delayRestart(1);
           }
-     }
+    }
+    pinMode(LED_BUILTIN, OUTPUT); 
 }
 
 void initOneNetMqtt(){
@@ -85,8 +86,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println();
 
   if ((char)payload[0] == '1') {
-    digitalWrite(BUILTIN_LED, LOW);
+    digitalWrite(LED_BUILTIN, LOW);
   } else {
-    digitalWrite(BUILTIN_LED, HIGH);
+    digitalWrite(LED_BUILTIN, HIGH);
   }
 }

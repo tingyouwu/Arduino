@@ -1,0 +1,1 @@
+{"name":"esp8266","flash":"QIO","board":"NodeMcu"}
