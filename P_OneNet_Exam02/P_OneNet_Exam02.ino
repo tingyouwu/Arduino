@@ -133,13 +133,22 @@ void postTempToOneNet(){
        lastOneNetPostTick = millis();
        Serial.println("TCP Client postTempToOneNet.");
 
-       StaticJsonBuffer<100> jsonBuffer;
+       StaticJsonBuffer<230> jsonBuffer;
        //创建根，也就是顶节点
        JsonObject& root = jsonBuffer.createObject();
-       root["temp"] = random(20, 50);
+       //在root对象中加入data数组
+       JsonArray& datastreams = root.createNestedArray("datastreams");
+       JsonObject& stream = datastreams.createNestedObject(); 
+       stream["id"] = "temperature";
+       JsonArray& datapoints = stream.createNestedArray("datapoints");
+       JsonObject& value1 = datapoints.createNestedObject();
+       value1["value"] =  random(20, 50);
+       JsonObject& value2 = datapoints.createNestedObject();
+       value2["value"] =  random(20, 50);
+       
        int len = root.measureLength();
        char buffer[100];
-       root.printTo(buffer, sizeof(buffer));
+       root.printTo(buffer, 100);
        String data;
        for(int index = 0;index<len;index++){
            data += buffer[index];

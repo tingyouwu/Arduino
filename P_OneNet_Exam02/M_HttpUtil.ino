@@ -96,7 +96,7 @@ bool sendPostRequest(const char* host,String url,String header,String postData,c
         //清除缓冲
         clearResponseBuffer(response);
         //读取响应数据
-        readReponseContent(response, sizeof(response));
+        readReponseContent(response);
         return true;
     }else{
       return false;
@@ -121,8 +121,8 @@ bool skipResponseHeaders() {
 * @param content 存储正文内容
 * @param maxSize 最大内容大小
 */
-void readReponseContent(char* content, size_t maxSize) {
-   size_t length = client.readBytes(content, maxSize);
+void readReponseContent(char* content) {
+   size_t length = client.readBytes(content, MAX_CONTENT_SIZE);
    Serial.println("Get the data from Internet!");
    content[length] = 0;
    Serial.println(content);
