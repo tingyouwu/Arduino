@@ -31,7 +31,7 @@ void loop() {
   ESP.wdtFeed();
   wifiTick();
 
-  if(millis() - lastOneNetPostTick > 30*1000){
+  if(millis() - lastOneNetPostTick > 60*1000){
      lastOneNetPostTick = millis();
      if(postTempToOneNet()){
        retry = 0;

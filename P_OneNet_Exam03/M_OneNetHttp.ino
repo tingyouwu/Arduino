@@ -18,7 +18,7 @@ bool postToDeviceDataPoint(String data){
     http.begin(host,80,url);
     http.addHeader("api-key",apiKey);
 
-    int httpCode = http.GET();
+    int httpCode = http.POST(data);
     if(httpCode > 0){
         Serial.printf("[HTTP] GET... code: %d\n", httpCode);
         //判断请求是否成功
