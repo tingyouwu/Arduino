@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="670959b2-7975-406e-9940-55f0ddd1b5f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="86d28ffc-b4f7-4a45-ae16-17284659a20c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/P_OneNet_Exam04/M_OneNetHttp.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/P_OneNet_Exam01/H_project.h" beforeDir="false" afterPath="$PROJECT_DIR$/P_OneNet_Exam01/H_project.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -18,30 +19,33 @@
     <session id="-1950713058">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="h" value="1" />
-          <entry key="ino" value="1" />
+          <entry key="h" value="3" />
+          <entry key="ino" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="C++" value="1" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="C++" value="7" />
+          <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="h" value="10" />
+          <entry key="h" value="251" />
+          <entry key="ino" value="707" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="C++" value="10" />
+          <entry key="C++" value="638" />
+          <entry key="PLAIN_TEXT" value="320" />
         </counts>
       </usages-collector>
     </session>
@@ -49,22 +53,73 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam01/P_OneNet_Exam01.ino">
+        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam04/H_project.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-285" />
+            <state relative-caret-position="266">
+              <caret line="32" column="36" lean-forward="true" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
+            </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam01/H_project.h">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam04/M_OneNetHttp.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+            <state relative-caret-position="142">
+              <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam04/M_ESP8266Util.ino">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam04/P_OneNet_Exam04.ino">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="539">
+              <caret line="94" column="21" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/M_OneNetHttp.ino">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/H_project.h">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/M_Esp8266Util.ino">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/M_HttpUtil.ino">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/P_OneNet_Exam02.ino">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>espClient</find>
+      <find>jsonBuffer</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,7 +127,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/P_OneNet_Exam01/H_project.h" />
+        <option value="$PROJECT_DIR$/P_OneNet_Exam04/H_project.h" />
+        <option value="$PROJECT_DIR$/P_OneNet_Exam02/P_OneNet_Exam02.ino" />
+        <option value="$PROJECT_DIR$/P_OneNet_Exam04/M_OneNetHttp.ino" />
+        <option value="$PROJECT_DIR$/P_OneNet_Exam04/P_OneNet_Exam04.ino" />
       </list>
     </option>
   </component>
@@ -82,11 +140,25 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-26" />
-    <option name="y" value="19" />
-    <option name="width" value="1157" />
-    <option name="height" value="999" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="724" />
+    <option name="y" value="31" />
+    <option name="width" value="1151" />
+    <option name="height" value="942" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Angular</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -96,6 +168,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -106,20 +179,27 @@
             <path>
               <item name="Arduino" type="b2602c69:ProjectViewProjectNode" />
               <item name="Arduino" type="462c0819:PsiDirectoryNode" />
-              <item name="P_OneNet_Exam01" type="462c0819:PsiDirectoryNode" />
+              <item name="P_OneNet_Exam02" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Arduino" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Arduino" type="462c0819:PsiDirectoryNode" />
+              <item name="P_OneNet_Exam04" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Arduino\P_OneNet_Exam04" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -138,29 +218,26 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="670959b2-7975-406e-9940-55f0ddd1b5f8" name="Default Changelist" comment="" />
-      <created>1561555346605</created>
+      <changelist id="86d28ffc-b4f7-4a45-ae16-17284659a20c" name="Default Changelist" comment="" />
+      <created>1561644916212</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1561555346605</updated>
-      <workItem from="1561555347955" duration="311000" />
+      <updated>1561644916212</updated>
+      <workItem from="1561644917329" duration="4000" />
+      <workItem from="1561901522209" duration="8662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311000" />
+    <option name="totallyTimeSpent" value="8666000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-26" y="19" width="1157" height="999" extended-state="0" />
+    <frame x="724" y="31" width="1151" height="942" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.4235925" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.42587602" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -168,6 +245,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -180,15 +261,53 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam01/P_OneNet_Exam01.ino">
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/M_OneNetHttp.ino">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/H_project.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/M_Esp8266Util.ino">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/M_HttpUtil.ino">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam02/P_OneNet_Exam02.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-285" />
+        <state relative-caret-position="171">
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam01/H_project.h">
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam04/H_project.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+        <state relative-caret-position="266">
+          <caret line="32" column="36" lean-forward="true" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam04/M_OneNetMqtt.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-245">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam04/M_OneNetHttp.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam04/M_ESP8266Util.ino">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P_OneNet_Exam04/P_OneNet_Exam04.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="94" column="21" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="21" />
         </state>
       </provider>
     </entry>
