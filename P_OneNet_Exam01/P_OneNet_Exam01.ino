@@ -6,6 +6,8 @@
  *      1.OneNet平台端：提前在OneNet平台创建DeviceA，DeviceB两个设备点，DeviceA属于NodeMcu，DeviceB属于OneNet Mqtt调试工具
  *      2.初始化工作：初始化网络配置，Mqtt客户端配置，连接鉴权，订阅主题
  *      3.订阅消息：获取发送过来的消息（json格式），解析消息，实现控制亮灭灯
+ *  技术QQ学习群：1.ESP8266&32物联网开发之旅（491507716）
+ *                2.ESP8266&32 物联网开发（622368884）
 */
 
 #include <ESP8266WiFi.h>
